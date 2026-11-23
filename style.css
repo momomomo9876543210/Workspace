@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+:root {
+    color-scheme: dark;
+    font-family: "DM Sans", "Noto Sans JP", sans-serif;
+    background: #0c1220;
+    color: #f5f7fb;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    --muted: #9ba8bc;
+    --line: rgba(202, 217, 240, .13);
+    --mint: #78f0cb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(ellipse at 50% 20%, rgba(32, 63, 91, .3), transparent 58%),
+        #0c1220;
+}
+
+button { font: inherit; }
+
+.game-shell {
+    width: min(100% - 40px, 1120px);
+    margin: 0 auto;
+    padding: 28px 0 24px;
+}
+
+.topbar, .brand, .game-hud, .game-footer, .hud-value, .primary-button {
+    display: flex;
+    align-items: center;
+}
+
+.topbar { justify-content: space-between; margin-bottom: 20px; }
+.brand { gap: 10px; color: #f4f7fc; text-decoration: none; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
+.brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid rgba(120, 240, 203, .45); border-radius: 9px; color: var(--mint); font-size: 17px; }
+.top-hint { margin: 0; color: var(--muted); font-size: 13px; }
+
+.game-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #121b2b;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .34);
+}
+
+.game-hud { height: 62px; justify-content: space-between; padding: 0 22px; background: rgba(17, 26, 42, .92); }
+.hud-item { display: flex; align-items: center; gap: 12px; }
+.hud-label, .level-name, .game-footer, .screen-eyebrow { font-family: "DM Mono", monospace; letter-spacing: .1em; }
+.hud-label { color: #8d9ab0; font-size: 10px; }
+.hud-value { gap: 7px; color: #f7f8fb; font-size: 15px; font-weight: 700; }
+.coin-icon { color: #ffd675; font-size: 12px; text-shadow: 0 0 12px rgba(255, 214, 117, .55); }
+.level-name { color: #e8edf5; font-size: 11px; }
+.level-name span { padding: 0 5px; color: #657187; }
+.sound-button { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 10px; color: #c4cfdf; background: transparent; cursor: pointer; }
+.sound-button:hover { border-color: rgba(120, 240, 203, .5); color: var(--mint); }
+
+.canvas-wrap { position: relative; overflow: hidden; background: #192a47; }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.screen {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: linear-gradient(90deg, rgba(10, 17, 31, .75), rgba(10, 17, 31, .26));
+    transition: opacity .25s ease, visibility .25s ease;
+}
+.screen.is-hidden { visibility: hidden; opacity: 0; pointer-events: none; }
+.screen-card { width: min(100%, 430px); padding: 30px; border: 1px solid rgba(219, 231, 248, .17); border-radius: 16px; background: rgba(15, 25, 41, .83); box-shadow: 0 20px 60px rgba(0, 0, 0, .26); backdrop-filter: blur(12px); }
+.screen-eyebrow { margin-bottom: 11px; color: var(--mint); font-size: 10px; }
+.screen h1 { margin: 0; font-size: clamp(26px, 4vw, 38px); line-height: 1.25; letter-spacing: -.05em; }
+.screen-card > p:not(.control-hint) { margin: 12px 0 22px; color: #b7c3d5; font-size: 13px; line-height: 1.8; }
+.primary-button { width: 100%; min-height: 48px; justify-content: space-between; padding: 0 17px; border: 0; border-radius: 10px; background: var(--mint); color: #10251f; font-size: 13px; font-weight: 800; cursor: pointer; transition: transform .15s, background .15s; }
+.primary-button:hover { transform: translateY(-2px); background: #9bffdf; }
+.control-hint { margin: 17px 0 0; color: #94a2b7; font-size: 11px; }
+kbd { display: inline-block; min-width: 22px; padding: 3px 5px; border: 1px solid rgba(211, 224, 243, .2); border-radius: 5px; color: #dce5f1; background: rgba(255, 255, 255, .05); font: inherit; text-align: center; }
+.control-hint span { padding: 0 5px; color: #57657b; }
+
+.game-footer { height: 45px; justify-content: space-between; padding: 0 20px; color: #8794a9; font-size: 9px; }
+.game-footer strong { color: #dae3ef; font-weight: 500; }
+.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 8px rgba(120, 240, 203, .7); vertical-align: 1px; }
+.page-note { margin: 16px 0 0; color: #8491a5; font-size: 11px; text-align: center; }
+.page-note span { color: #b8c2d1; }
+.touch-controls { display: none; }
+
+@media (max-width: 600px) {
+    .game-shell { width: min(100% - 24px, 1120px); padding-top: 18px; }
+    .topbar { margin-bottom: 14px; }
+    .top-hint { max-width: 150px; font-size: 10px; text-align: right; }
+    .game-card { border-radius: 12px; }
+    .game-hud { height: 52px; padding: 0 14px; }
+    .level-name { font-size: 9px; }
+    .screen { padding: 12px; }
+    .screen-card { padding: 20px; }
+    .screen h1 { font-size: 26px; }
+    .screen-card > p:not(.control-hint) { margin: 8px 0 14px; font-size: 11px; }
+    .primary-button { min-height: 42px; }
+    .control-hint { margin-top: 12px; font-size: 9px; }
+    .game-footer { height: 38px; padding: 0 13px; font-size: 8px; }
+    .touch-controls { display: flex; gap: 10px; align-items: center; justify-content: center; margin: 14px 0 0; }
+    .touch-controls button { width: 54px; height: 48px; border: 1px solid var(--line); border-radius: 12px; color: #eff5fc; background: #172338; font-size: 20px; touch-action: none; }
+    .touch-controls .jump-control { display: flex; width: 104px; justify-content: center; align-items: center; gap: 9px; margin-left: 12px; border-color: rgba(120, 240, 203, .35); color: var(--mint); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+    .touch-controls button:active { background: #263a54; }
+    .page-note { margin-top: 12px; }
+}
+
+@media (max-width: 390px) {
+    .screen-card { padding: 16px; }
+    .screen h1 { font-size: 23px; }
+    .control-hint { letter-spacing: -.03em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

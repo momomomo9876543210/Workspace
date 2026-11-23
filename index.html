@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#111827">
+    <title>Skybound - 横スクロールアクション</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    ようこそ私のページへ！
+    <main class="game-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Skybound ホーム">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>SKYBOUND</span>
+            </a>
+            <p class="top-hint">ゴールを目指してコインを集めよう</p>
+        </header>
+
+        <section class="game-card" aria-label="ゲーム画面">
+            <div class="game-hud">
+                <div class="hud-item">
+                    <span class="hud-label">COINS</span>
+                    <span class="hud-value"><span class="coin-icon" aria-hidden="true">●</span> <span id="coin-count">0</span></span>
+                </div>
+                <div class="level-name">WORLD 1 <span>/</span> 1</div>
+                <button class="sound-button" id="sound-button" type="button" aria-label="サウンドをオンにする" title="サウンド">♪</button>
+            </div>
+
+            <div class="canvas-wrap">
+                <canvas id="game" width="960" height="540" aria-label="横スクロールアクションゲーム"></canvas>
+                <div class="screen" id="screen">
+                    <div class="screen-card">
+                        <div class="screen-eyebrow" id="screen-eyebrow">A LITTLE ADVENTURE</div>
+                        <h1 id="screen-title">空の向こうへ。</h1>
+                        <p id="screen-message">ジャンプしてコインを集めながら、ゴールの旗を目指そう。</p>
+                        <button class="primary-button" id="start-button" type="button">
+                            <span id="start-label">冒険をはじめる</span><span aria-hidden="true">→</span>
+                        </button>
+                        <p class="control-hint"><kbd>←</kbd> <kbd>→</kbd> 移動 <span>·</span> <kbd>Space</kbd> ジャンプ</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="game-footer">
+                <span><span class="status-dot"></span> READY TO PLAY</span>
+                <span>全 <strong id="total-coins">0</strong> 枚のコイン</span>
+            </footer>
+        </section>
+
+        <nav class="touch-controls" aria-label="タッチ操作">
+            <button type="button" data-control="left" aria-label="左へ移動">←</button>
+            <button type="button" data-control="right" aria-label="右へ移動">→</button>
+            <button type="button" class="jump-control" data-control="jump" aria-label="ジャンプ">JUMP <span aria-hidden="true">↑</span></button>
+        </nav>
+        <p class="page-note">落ちても大丈夫。<span>何度でも挑戦しよう。</span></p>
+    </main>
+    <script src="game.js"></script>
 </body>
 </html>
